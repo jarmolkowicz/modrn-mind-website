@@ -43,6 +43,19 @@ $releaseMonth = [datetime]::ParseExact(
 $htmlPath = Join-Path $websiteRoot 'index.html'
 $html = [IO.File]::ReadAllText($htmlPath, [Text.Encoding]::UTF8)
 $updatedHtml = $html
+$heroCounts = @{ entries = $total; sources = $sources; concepts = $concepts; methods = $methods }
+foreach ($name in $heroCounts.Keys) {
+    $pattern = '(<dd data-kb-count="' + $name + '">)\d+(</dd>)'
+    if ([regex]::Matches($updatedHtml, $pattern).Count -ne 1) {
+        throw "Expected exactly one hero count for $name."
+    }
+    $value = $heroCounts[$name]
+    $updatedHtml = [regex]::Replace(
+        $updatedHtml,
+        $pattern,
+        { param($match) $match.Groups[1].Value + $value + $match.Groups[2].Value }
+    )
+}
 $updatedHtml = [regex]::Replace($updatedHtml, '\b\d+\+? sources from cognitive science', "$sources sources from cognitive science")
 $updatedHtml = [regex]::Replace($updatedHtml, 'containing \d+\+? entries \(concepts, methods, sources\)', "containing $total entries (concepts, methods, sources)")
 $updatedHtml = [regex]::Replace($updatedHtml, 'with all \d+\+? entries', "with all $total entries")

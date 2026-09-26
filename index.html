@@ -12,24 +12,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <!-- Google Analytics (consent-gated) -->
-    <script>
-        function loadGA() {
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BFVDQP2TCN';
-            document.head.appendChild(s);
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'G-BFVDQP2TCN');
-        }
-        if (localStorage.getItem('cookie-consent') === 'accepted') {
-            loadGA();
-        }
-    </script>
-
     <!-- Canonical -->
     <link rel="canonical" href="https://modrnmind.com">
 
@@ -56,7 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://github.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=DM+Sans:wght@400;500;600;700&family=Saira:wght@600;700&display=swap" rel="stylesheet">
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -114,600 +96,11 @@
     }
     </script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --indigo: #3e448a;
-            --indigo-dark: #2d3266;
-            --indigo-light: #eef0f7;
-            --coral: #ff6273;
-            --peach: #f89e7c;
-            --charcoal: #201816;
-            --gray: #4b5563;
-            --gray-light: #9ca3af;
-            --border: #eeeeee;
-            --cream: #faf9f8;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--charcoal);
-            background: var(--white);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid var(--indigo);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        /* Section intro text */
-        .section-intro {
-            font-size: 16px;
-            color: var(--gray);
-            margin-bottom: 16px;
-            max-width: 640px;
-        }
-
-        .section-intro a {
-            color: var(--indigo);
-            font-weight: 500;
-        }
-
-        /* Header */
-        header {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo svg {
-            height: 22px;
-            width: auto;
-            display: block;
-        }
-
-        header nav a {
-            color: var(--gray);
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: 24px;
-            padding: 8px 0;
-        }
-
-        header nav a:hover {
-            color: var(--indigo);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 64px 0 48px;
-        }
-
-
-        .hero h1 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 48px;
-            font-weight: 400;
-            color: var(--indigo);
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-
-        .hero .subtitle {
-            font-size: 20px;
-            color: var(--gray);
-            margin-bottom: 32px;
-            max-width: 600px;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 32px;
-        }
-
-        .hero .cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--indigo);
-            color: var(--white);
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: background 0.2s;
-        }
-
-        .hero .cta:hover {
-            background: var(--indigo-dark);
-        }
-
-        .hero .cta svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .hero .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border: 1.5px solid var(--indigo);
-            color: var(--indigo);
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.2s;
-        }
-
-        .hero .cta-secondary:hover {
-            background: var(--indigo);
-            color: var(--white);
-        }
-
-        .hero .cta-secondary svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Problem */
-        .problem {
-            padding: 56px 0;
-            background: var(--cream);
-        }
-
-        .problem .container {
-            border-left: 3px solid var(--indigo);
-            padding-left: 24px;
-        }
-
-        .problem p {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 640px;
-        }
-
-        .problem p + p {
-            margin-top: 16px;
-        }
-
-
-        /* Section label (h2) */
-        .section-label {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gray-light);
-            margin-bottom: 16px;
-        }
-
-        /* What's Inside */
-        .whats-inside {
-            padding: 56px 0;
-        }
-
-
-        /* Use Cases */
-        .use-cases {
-            padding: 56px 0;
-            background: var(--cream);
-        }
-
-        .use-case-grid {
-            display: grid;
-            gap: 12px;
-        }
-
-        .use-case-item {
-            display: flex;
-            gap: 16px;
-            padding: 16px 20px;
-            background: var(--white);
-            border-radius: 10px;
-            align-items: flex-start;
-            transition: box-shadow 0.2s;
-        }
-
-        .use-case-item:hover {
-            box-shadow: 0 2px 8px rgba(62, 68, 138, 0.08);
-        }
-
-        .use-case-item .arrow {
-            color: var(--peach);
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 1.4;
-        }
-
-        .use-case-item > div {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .use-case-item h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 4px;
-        }
-
-        .use-case-item p {
-            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        .use-case-item .copy-btn {
-            flex-shrink: 0;
-            align-self: center;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            background: transparent;
-            color: var(--gray-light);
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-left: auto;
-        }
-
-        .use-case-item .copy-btn:hover {
-            background: var(--indigo-light);
-            color: var(--indigo);
-        }
-
-        .use-case-item .copy-btn svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Subtle CTA */
-        .cta-subtle {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 24px;
-            padding: 12px 24px;
-            border: 1.5px solid var(--indigo);
-            color: var(--indigo);
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .cta-subtle:hover {
-            background: var(--indigo);
-            color: var(--white);
-        }
-
-        .cta-subtle svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Step number */
-        .step-number {
-            width: 36px;
-            height: 36px;
-            background: var(--indigo);
-            color: var(--white);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: 56px 0;
-        }
-
-        .how-it-works .section-intro {
-            margin-bottom: 20px;
-        }
-
-        /* How It Works cards (reused from original different-grid) */
-        .different-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .different-item {
-            background: var(--cream);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .different-item h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-        }
-
-        .different-item p {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        /* Who */
-        .who {
-            padding: 56px 0;
-            background: var(--cream);
-        }
-
-        .who p {
-            font-size: 16px;
-            color: var(--gray);
-            max-width: 540px;
-        }
-
-        .who p + p {
-            margin-top: 10px;
-        }
-
-        .who .emphasis {
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-
-        .author-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--charcoal);
-            transition: all 0.2s;
-        }
-
-        .author-link:hover {
-            border-color: var(--indigo);
-            color: var(--indigo);
-        }
-
-        .author-link svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Join */
-        .join {
-            padding: 56px 0;
-        }
-
-        .join-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .join-item {
-            padding: 24px;
-            background: var(--cream);
-            border-radius: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .join-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(62, 68, 138, 0.08);
-        }
-
-        .join-item h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-        }
-
-        .join-item p {
-            font-size: 14px;
-            color: var(--gray);
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .join-item a {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--coral);
-        }
-
-        .join-item a:hover {
-            color: var(--indigo);
-        }
-
-        /* Share buttons */
-        .share-buttons {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 8px;
-            background: var(--indigo-light);
-            color: var(--indigo);
-            transition: all 0.2s;
-        }
-
-        .share-btn:hover {
-            background: var(--indigo);
-            color: var(--white);
-        }
-
-        .share-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Cookie Banner */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            font-size: 14px;
-            z-index: 1000;
-            flex-wrap: wrap;
-        }
-
-        .cookie-banner p {
-            margin: 0;
-            color: var(--gray-light);
-        }
-
-        .cookie-banner button {
-            padding: 8px 20px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid transparent;
-            font-family: inherit;
-        }
-
-        .cookie-accept {
-            background: var(--white);
-            color: var(--charcoal);
-        }
-
-        .cookie-decline {
-            background: transparent;
-            color: var(--gray-light);
-            border-color: var(--gray);
-        }
-
-        .cookie-decline:hover {
-            color: var(--white);
-            border-color: var(--white);
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        footer .logo {
-            margin-bottom: 20px;
-        }
-
-        footer .logo svg {
-            height: 20px;
-            width: auto;
-            opacity: 0.3;
-        }
-
-        footer p {
-            font-size: 12px;
-            color: var(--gray-light);
-        }
-
-        footer p a {
-            color: var(--gray);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero .subtitle {
-                font-size: 18px;
-            }
-
-            .different-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .join-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .hero-ctas {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            header nav a {
-                margin-left: 16px;
-                font-size: 13px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-    <a href="#main" class="visually-hidden" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+    <a href="#main" class="skip-link">Skip to content</a>
 
     <header>
         <div class="container">
@@ -724,25 +117,38 @@
                     <path d="M7436.43 890.773H7618.65L7614.24 723.243V17.8496H7814.11V1073H7330.62L6795.69 200.076H6614.94L6617.88 367.607V1073H6419.48V17.8496H6902.97L7436.43 890.773Z" fill="#3E448A"/>
                 </svg>
             </a>
-            <nav>
+            <nav aria-label="Main navigation">
                 <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
             </nav>
         </div>
     </header>
 
-    <main id="main">
+    <main id="main" tabindex="-1">
         <section class="hero">
             <div class="container">
-                <h1>Curated Research Database on How AI Reshapes Thinking, Work &amp; Self</h1>
-                <p class="subtitle">Built for people who advise teams on AI adoption, write about it, teach it, or shape policy around it. Turn your generic AI into a research-grounded specialist.</p>
-                <div class="hero-ctas">
-                    <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/releases/latest/download/modern-mind-kb.md" class="cta" download>
-                        Get the Knowledge Pack
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M8 3v10M4 9l4 4 4-4"/>
-                        </svg>
-                    </a>
+                <div class="hero-grid">
+                    <div class="hero-main">
+                        <h1>Curated Research Database on How AI Reshapes Thinking, Work &amp; Self</h1>
+                        <p class="subtitle">Built for people who advise teams on AI adoption, write about it, teach it, or shape policy around it. Turn your generic AI into a research-grounded specialist.</p>
+                        <div class="hero-ctas">
+                            <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/releases/latest/download/modern-mind-kb.md" class="cta" download>
+                                Get the Knowledge Pack
+                                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M8 3v10M4 9l4 4 4-4"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <aside class="hero-index" aria-label="What's inside">
+                        <span class="hero-index-label">Knowledge Base</span>
+                        <dl>
+                            <div><dt>entries</dt><dd data-kb-count="entries">229</dd></div>
+                            <div><dt>sources</dt><dd data-kb-count="sources">134</dd></div>
+                            <div><dt>concepts</dt><dd data-kb-count="concepts">73</dd></div>
+                            <div><dt>methods</dt><dd data-kb-count="methods">22</dd></div>
+                        </dl>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -750,26 +156,26 @@
         <section class="problem">
             <div class="container">
                 <p>AI is reshaping how we think, decide, and work. The research on what this means is scattered across disciplines, the field is new, and AI itself gives confident but shallow answers on this topic.</p>
-                <p>This knowledge base organizes <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/tree/main/sources" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 500;">134 sources from cognitive science, HCI, organizational psychology, education research, and behavioral science</a> into concepts that name what you're already experiencing, plus frameworks and practices you can apply. Give it to your AI, and it can help you write, teach, draft policy, or prepare an argument — grounded in research instead of generic knowledge.</p>
+                <p>This knowledge base organizes <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/tree/main/sources" target="_blank" rel="noopener">134 sources from cognitive science, HCI, organizational psychology, education research, and behavioral science</a> into concepts that name what you're already experiencing, plus frameworks and practices you can apply. Give it to your AI, and it can help you write, teach, draft policy, or prepare an argument — grounded in research instead of generic knowledge.</p>
             </div>
         </section>
 
-        <section class="how-it-works">
+        <section class="how-it-works" id="how-it-works">
             <div class="container">
                 <h2 class="section-label">How It Works</h2>
                 <p class="section-intro">The knowledge pack is one downloadable file you give to your AI.</p>
-                <div class="different-grid">
-                    <div class="different-item">
+                <div class="steps-grid">
+                    <div class="step">
                         <div class="step-number" aria-hidden="true">1</div>
                         <h3>Download</h3>
-                        <p>One file. The full <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/releases/latest/download/modern-mind-kb.md" style="color: var(--indigo); font-weight: 500;">knowledge pack</a>, a single markdown with all 229 entries.</p>
+                        <p>One file. The full <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/releases/latest/download/modern-mind-kb.md">knowledge pack</a>, a single markdown with all 229 entries.</p>
                     </div>
-                    <div class="different-item">
+                    <div class="step">
                         <div class="step-number" aria-hidden="true">2</div>
                         <h3>Give it to your AI</h3>
                         <p>Drop it into Claude Projects, NotebookLM, a Custom GPT, or any AI assistant that lets you upload files.</p>
                     </div>
-                    <div class="different-item">
+                    <div class="step">
                         <div class="step-number" aria-hidden="true">3</div>
                         <h3>Prompt</h3>
                         <p>Write an article, design a training, build a case — with AI grounded in research instead of generic knowledge.</p>
@@ -780,66 +186,48 @@
 
         <section class="use-cases">
             <div class="container">
-                <h2 class="section-label">Try These Prompts</h2>
-                <p class="section-intro">Once your AI has the knowledge pack as context, try prompting it:</p>
-                <div class="use-case-grid">
-                    <div class="use-case-item">
+                <div class="section-heading">
+                    <h2 class="section-label">Try These Prompts</h2>
+                    <p class="section-intro">Once your AI has the knowledge pack as context, try prompting it:</p>
+                    <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/releases/latest/download/modern-mind-kb.md" class="cta-subtle" download>
+                        Get the Knowledge Pack
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M8 3v10M4 9l4 4 4-4"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="prompt-list">
+                    <div class="prompt-item">
                         <span class="arrow" aria-hidden="true">›</span>
                         <div>
-                            <h3>Write with depth</h3>
-                            <p>Using the knowledge pack, help me write a LinkedIn post about why our consulting deliverables feel hollow. Ground it in research.</p>
+                            <h3>Professional judgment</h3>
+                            <p>Using the knowledge pack, compare evidence on when AI improves professional judgment and when it weakens it. What conditions explain the differences? Cite sources from the pack and distinguish findings from interpretation.</p>
                         </div>
-                        <button class="copy-btn" onclick="copyPrompt(this)" aria-label="Copy prompt">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        <button class="copy-btn" type="button" data-copy-prompt aria-label="Copy prompt: Professional judgment">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
                         </button>
                     </div>
-                    <div class="use-case-item">
+                    <div class="prompt-item">
                         <span class="arrow" aria-hidden="true">›</span>
                         <div>
-                            <h3>Design a training</h3>
-                            <p>Using the knowledge pack, design a 2-hour workshop for senior consultants on cognitive risks of AI adoption</p>
+                            <h3>Independent capability</h3>
+                            <p>Using the knowledge pack, examine whether better performance with AI leads to better performance without it. Compare findings and explain their limits. Cite sources from the pack and distinguish findings from interpretation.</p>
                         </div>
-                        <button class="copy-btn" onclick="copyPrompt(this)" aria-label="Copy prompt">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        <button class="copy-btn" type="button" data-copy-prompt aria-label="Copy prompt: Independent capability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
                         </button>
                     </div>
-                    <div class="use-case-item">
+                    <div class="prompt-item">
                         <span class="arrow" aria-hidden="true">›</span>
                         <div>
-                            <h3>Draft a policy</h3>
-                            <p>Using the knowledge pack, draft an AI use policy that addresses Borrowed Certainty and Automation Bias for our team</p>
+                            <h3>Ownership and responsibility</h3>
+                            <p>Using the knowledge pack, examine how AI changes people’s ownership of their work and responsibility for outcomes. Distinguish feeling in control from having meaningful control. Cite sources from the pack and distinguish findings from interpretation.</p>
                         </div>
-                        <button class="copy-btn" onclick="copyPrompt(this)" aria-label="Copy prompt">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                        </button>
-                    </div>
-                    <div class="use-case-item">
-                        <span class="arrow" aria-hidden="true">›</span>
-                        <div>
-                            <h3>Build a case</h3>
-                            <p>Using the knowledge pack, help me build an evidence-based argument for why our team needs AI use guidelines before scaling adoption</p>
-                        </div>
-                        <button class="copy-btn" onclick="copyPrompt(this)" aria-label="Copy prompt">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                        </button>
-                    </div>
-                    <div class="use-case-item">
-                        <span class="arrow" aria-hidden="true">›</span>
-                        <div>
-                            <h3>Explain a concept</h3>
-                            <p>Using the knowledge pack, help me explain cognitive debt to my team lead who thinks AI just makes everyone faster</p>
-                        </div>
-                        <button class="copy-btn" onclick="copyPrompt(this)" aria-label="Copy prompt">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        <button class="copy-btn" type="button" data-copy-prompt aria-label="Copy prompt: Ownership and responsibility">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
                         </button>
                     </div>
                 </div>
-                <a href="https://github.com/jarmolkowicz/modrn-mind-knowledge-base/releases/latest/download/modern-mind-kb.md" class="cta-subtle" download>
-                    Get the Knowledge Pack
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path d="M8 3v10M4 9l4 4 4-4"/>
-                    </svg>
-                </a>
             </div>
         </section>
 
@@ -854,23 +242,27 @@
         <section class="who">
             <div class="container">
                 <h2 class="section-label">Who's Behind This</h2>
-                <p><span class="emphasis" lang="pl">Paweł Jarmołkowicz</span> — Innovation Consultant &amp; Researcher with 20 years in the field, studying what AI does to our thinking, agency, identity, and the way we work together. Creator and curator of the Knowledge Base.</p>
-                <p><span class="emphasis" lang="pl">Julia Kołodko</span> — PhD, behavioral scientist. Contributes the research foundation — sourcing, reviewing, and validating the evidence base that grounds this Knowledge Base in science.</p>
-                <p>This project is open to contributions and built to grow beyond one perspective.</p>
-                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                    <a href="https://jarmolkowicz.com" class="author-link" target="_blank" rel="noopener">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                        </svg>
-                        Paweł's website
-                    </a>
-                    <a href="https://www.juliakolodko.com/en" class="author-link" target="_blank" rel="noopener">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                        </svg>
-                        Julia's website
-                    </a>
+                <div class="people-grid">
+                    <article class="person">
+                        <p><span class="emphasis" lang="pl">Paweł Jarmołkowicz</span> — Innovation Consultant &amp; Researcher with 20 years in the field, studying what AI does to our thinking, agency, identity, and the way we work together. Creator and curator of the Knowledge Base.</p>
+                        <a href="https://jarmolkowicz.com" class="author-link" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Paweł's website
+                        </a>
+                    </article>
+                    <article class="person">
+                        <p><span class="emphasis" lang="pl">Julia Kołodko</span> — PhD, behavioral scientist. Contributes the research foundation — sourcing, reviewing, and validating the evidence base that grounds this Knowledge Base in science.</p>
+                        <a href="https://www.juliakolodko.com/en" class="author-link" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                            Julia's website
+                        </a>
+                    </article>
                 </div>
+                <p class="who-note">This project is open to contributions and built to grow beyond one perspective.</p>
             </div>
         </section>
 
@@ -922,36 +314,14 @@
         </div>
     </footer>
 
-    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent" hidden>
         <p>This site uses cookies for anonymous analytics.</p>
-        <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
-        <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+        <button class="cookie-accept" type="button" data-consent="accepted">Accept</button>
+        <button class="cookie-decline" type="button" data-consent="declined">Decline</button>
     </div>
 
-    <script>
-        function copyPrompt(btn) {
-            var text = btn.parentElement.querySelector('p').textContent;
-            navigator.clipboard.writeText(text).then(function() {
-                var svg = btn.querySelector('svg');
-                var original = svg.innerHTML;
-                svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>';
-                setTimeout(function() { svg.innerHTML = original; }, 1500);
-            });
-        }
-
-        if (!localStorage.getItem('cookie-consent')) {
-            document.getElementById('cookieBanner').style.display = 'flex';
-        }
-        function acceptCookies() {
-            localStorage.setItem('cookie-consent', 'accepted');
-            document.getElementById('cookieBanner').style.display = 'none';
-            loadGA();
-        }
-        function declineCookies() {
-            localStorage.setItem('cookie-consent', 'declined');
-            document.getElementById('cookieBanner').style.display = 'none';
-        }
-    </script>
+    <p id="copy-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
+    <script src="/app.js" defer></script>
 
 </body>
 </html>
