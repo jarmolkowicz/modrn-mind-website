@@ -20,7 +20,7 @@ $kbIndex = [IO.File]::ReadAllText(
 
 $countMatch = [regex]::Match(
     $kbIndex,
-    '\*\*Total entries:\*\*\s+(\d+)\s+\((\d+)\s+sources,\s+(\d+)\s+concepts,\s+(\d+)\s+methods\)'
+    '\*\*Total entries:\*\*\s+(\d+)\s+\((\d+)\s+sources,\s+(\d+)\s+concepts,\s+(\d+)\s+methods,\s+(\d+)\s+practices\)'
 )
 
 $dateMatch = [regex]::Match($kbIndex, 'Generated\s+(\d{4}-\d{2}-\d{2})\.')
@@ -33,6 +33,7 @@ $total = $countMatch.Groups[1].Value
 $sources = $countMatch.Groups[2].Value
 $concepts = $countMatch.Groups[3].Value
 $methods = $countMatch.Groups[4].Value
+$practices = $countMatch.Groups[5].Value
 $releaseDate = $dateMatch.Groups[1].Value
 $releaseMonth = [datetime]::ParseExact(
     $releaseDate,
@@ -43,7 +44,7 @@ $releaseMonth = [datetime]::ParseExact(
 $htmlPath = Join-Path $websiteRoot 'index.html'
 $html = [IO.File]::ReadAllText($htmlPath, [Text.Encoding]::UTF8)
 $updatedHtml = $html
-$heroCounts = @{ entries = $total; sources = $sources; concepts = $concepts; methods = $methods }
+$heroCounts = @{ entries = $total; sources = $sources; concepts = $concepts; methods = $methods; practices = $practices }
 foreach ($name in $heroCounts.Keys) {
     $pattern = '(<dd data-kb-count="' + $name + '">)\d+(</dd>)'
     if ([regex]::Matches($updatedHtml, $pattern).Count -ne 1) {
@@ -57,12 +58,12 @@ foreach ($name in $heroCounts.Keys) {
     )
 }
 $updatedHtml = [regex]::Replace($updatedHtml, '\b\d+\+? sources from cognitive science', "$sources sources from cognitive science")
-$updatedHtml = [regex]::Replace($updatedHtml, 'containing \d+\+? entries \(concepts, methods, sources\)', "containing $total entries (concepts, methods, sources)")
+$updatedHtml = [regex]::Replace($updatedHtml, 'containing \d+\+? entries \(concepts, methods, (?:practices, )?sources\)', "containing $total entries (concepts, methods, practices, sources)")
 $updatedHtml = [regex]::Replace($updatedHtml, 'with all \d+\+? entries', "with all $total entries")
 $updatedHtml = [regex]::Replace(
     $updatedHtml,
-    '\b\d+\+? entries: \d+ concepts, \d+ methods, and \d+ sources\.',
-    "$total entries: $concepts concepts, $methods methods, and $sources sources."
+    '\b\d+\+? entries: \d+ concepts, \d+ methods, (?:\d+ practices, )?and \d+ sources\.',
+    "$total entries: $concepts concepts, $methods methods, $practices practices, and $sources sources."
 )
 $updatedHtml = [regex]::Replace(
     $updatedHtml,
@@ -80,7 +81,7 @@ if ($Check) {
         throw 'Website counts or release date are out of sync with the KB index.'
     }
 
-    Write-Output "Website is in sync: $total entries ($sources sources, $concepts concepts, $methods methods), $releaseDate."
+    Write-Output "Website is in sync: $total entries ($sources sources, $concepts concepts, $methods methods, $practices practices), $releaseDate."
     exit 0
 }
 
@@ -88,4 +89,4 @@ $utf8NoBom = [Text.UTF8Encoding]::new($false)
 [IO.File]::WriteAllText($htmlPath, $updatedHtml, $utf8NoBom)
 [IO.File]::WriteAllText($sitemapPath, $updatedSitemap, $utf8NoBom)
 
-Write-Output "Updated website: $total entries ($sources sources, $concepts concepts, $methods methods), $releaseDate."
+Write-Output "Updated website: $total entries ($sources sources, $concepts concepts, $methods methods, $practices practices), $releaseDate."

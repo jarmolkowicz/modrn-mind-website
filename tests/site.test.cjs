@@ -109,7 +109,7 @@ test('page assets, anchors, structured data and prompt instructions are valid', 
     assert.equal((html.match(/Cite sources from the pack and distinguish findings from interpretation\./g) || []).length, 3);
 });
 
-test('count sync detects stale hero values and updates all four metrics', () => {
+test('count sync detects stale hero values and updates all five metrics', () => {
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'modrn-mind-audit-'));
     try {
         fs.mkdirSync(path.join(temp, 'scripts'));
@@ -117,23 +117,26 @@ test('count sync detects stale hero values and updates all four metrics', () => 
         fs.writeFileSync(path.join(temp, 'index.html'), html);
         fs.copyFileSync(path.join(root, 'sitemap.xml'), path.join(temp, 'sitemap.xml'));
         const index = path.join(temp, 'kb-index.md');
-        fs.writeFileSync(index, '**Total entries:** 300 (180 sources, 90 concepts, 30 methods)\nGenerated 2026-10-01.');
+        fs.writeFileSync(index, '**Total entries:** 400 (180 sources, 90 concepts, 30 methods, 100 practices)\nGenerated 2026-10-01.');
         const args = ['-NoProfile', '-File', path.join(temp, 'scripts/sync-kb-counts.ps1'), '-KbIndexPath', index];
         const run = (check = false) => spawnSync('pwsh', [...args, ...(check ? ['-Check'] : [])], { encoding: 'utf8' });
         assert.notEqual(run(true).status, 0);
         const update = run();
         assert.equal(update.status, 0, update.stderr);
         const updated = fs.readFileSync(path.join(temp, 'index.html'), 'utf8');
-        for (const [label, value] of Object.entries({ entries: 300, sources: 180, concepts: 90, methods: 30 })) {
+        for (const [label, value] of Object.entries({ entries: 400, sources: 180, concepts: 90, methods: 30, practices: 100 })) {
             assert.ok(updated.includes('data-kb-count="' + label + '">' + value), label);
         }
-        assert.ok(updated.includes('300 entries: 90 concepts, 30 methods, and 180 sources.'));
+        assert.ok(updated.includes('400 entries: 90 concepts, 30 methods, 100 practices, and 180 sources.'));
+        assert.ok(updated.includes('containing 400 entries (concepts, methods, practices, sources)'));
+        assert.ok(updated.includes('"dateModified": "2026-10-01"'));
         assert.equal(run(true).status, 0);
-        fs.writeFileSync(path.join(temp, 'index.html'), updated.replace('data-kb-count="entries">300', 'data-kb-count="entries">299'));
+        fs.writeFileSync(path.join(temp, 'index.html'), updated.replace('data-kb-count="entries">400', 'data-kb-count="entries">399'));
         assert.notEqual(run(true).status, 0, 'Hero-only drift must fail');
+        fs.writeFileSync(path.join(temp, 'index.html'), updated.replace('data-kb-count="practices">100', 'data-kb-count="practices">99'));
+        assert.notEqual(run(true).status, 0, 'Practice-only drift must fail');
     } finally {
         // Only the isolated test directory created above is removed.
         fs.rmSync(temp, { recursive: true, force: true });
     }
 });
-
