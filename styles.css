@@ -512,14 +512,6 @@ header nav a:hover {
     font-size: 16px;
 }
 
-.person-bio,
-.contribution-note {
-    max-width: 54ch;
-    margin-top: 12px;
-    color: var(--text-muted);
-    font-size: 16px;
-}
-
 .credit-name {
     color: var(--mm-indigo);
     font-size: 18px;
@@ -546,15 +538,6 @@ header nav a:hover {
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
     gap: 16px 24px;
     list-style: none;
-}
-
-.who-note {
-    max-width: var(--reading-width);
-    margin-top: 48px;
-    padding-top: 22px;
-    border-top: 1px solid var(--line);
-    color: var(--text-muted);
-    font-size: 15px;
 }
 
 /* Get involved */
