@@ -498,51 +498,54 @@ header nav a:hover {
 
 .people-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 48px;
     margin-top: 36px;
 }
 
-.person {
+.person,
+.contributors {
+    min-width: 0;
     padding-top: 24px;
-    border-top: 2px solid var(--mm-indigo);
-}
-
-.person p {
-    max-width: 54ch;
+    border-top: 1px solid var(--line);
     color: var(--text-muted);
     font-size: 16px;
 }
 
-.person .emphasis {
+.person-bio,
+.contribution-note {
+    max-width: 54ch;
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.credit-name {
     color: var(--mm-indigo);
-    font-family: var(--font-label);
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
 }
 
-.author-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    margin-top: 24px;
-    padding: 11px 16px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    color: var(--mm-indigo);
-    font-size: 13px;
-    font-weight: 700;
-    transition: border-color 0.2s, background 0.2s;
+.credit-name a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-.author-link:hover {
-    border-color: var(--mm-indigo);
-    background: var(--mm-white);
+.person h3,
+.contributors h3 {
+    margin-bottom: 12px;
+    font-family: var(--font-label);
+    font-size: 16px;
+    font-weight: 600;
 }
 
-.author-link svg {
-    width: 17px;
-    height: 17px;
+.contributors ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    gap: 16px 24px;
+    list-style: none;
 }
 
 .who-note {
@@ -804,7 +807,11 @@ footer p a {
     }
 
     .people-grid {
-        gap: 42px;
+        gap: 32px;
+    }
+
+    .contributors ul {
+        grid-template-columns: 1fr;
     }
 
     .whats-inside .container {
